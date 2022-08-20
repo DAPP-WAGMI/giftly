@@ -144,6 +144,7 @@
 }
 
 .bannerContainer {
+  padding-top: 5rem;
 }
 
 .bannerLeftSection {
@@ -239,13 +240,22 @@
   color: rgb(33, 33, 33);
 }
 
+.cardCategoryContainer {
+  padding-bottom: 3rem;
+}
+
 .cardCategoryHeaderContainer {
   width: 100%;
   justify-content: space-between !important;
   align-items: flex-end !important;
 }
 
-.cardImage {
+.cardCategoryCarouselContainer {
+  width: 1550px;
+  overflow-x: scroll;
+}
+
+.cardCategoryCarouselImage {
   width: 360px;
   height: 227.37px;
   border-radius: 15px;

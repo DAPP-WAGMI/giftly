@@ -3,6 +3,48 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import { HStack, VStack, Image, Text, Button, Box } from "@chakra-ui/react";
 
+const sampleCardCategories = [
+  {
+    name: "Celebration",
+    cards: [
+      "/1.png",
+      "/2.png",
+      "/3.png",
+      "/4.png",
+      "/5.png",
+      "/6.png",
+      "/7.png",
+      "/8.png",
+    ],
+  },
+  {
+    name: "Appreciation",
+    cards: [
+      "/5.png",
+      "/6.png",
+      "/7.png",
+      "/8.png",
+      "/1.png",
+      "/2.png",
+      "/3.png",
+      "/4.png",
+    ],
+  },
+  {
+    name: "Birthday",
+    cards: [
+      "/1.png",
+      "/2.png",
+      "/3.png",
+      "/4.png",
+      "/5.png",
+      "/6.png",
+      "/7.png",
+      "/8.png",
+    ],
+  },
+];
+
 const Home: NextPage = () => {
   return (
     <div className={styles.container}>
@@ -37,34 +79,24 @@ const Home: NextPage = () => {
           </VStack>
         </HStack>
         <Box h="5rem"></Box>
-        <VStack className={styles.cardCategoryContainer}>
-          <HStack className={styles.cardCategoryHeaderContainer}>
-            <Text className={styles.cardCategoryHeaderTitle}>Celebration</Text>
-            <Text className={styles.cardCategoryHeaderSubtitle}>See all</Text>
-          </HStack>
-          <HStack className={styles.cardCategoryCarouselContainer}>
-            <Image
-              src="/1.png"
-              alt="Gift card 1"
-              className={styles.cardImage}
-            />
-            <Image
-              src="/2.png"
-              alt="Gift card 2"
-              className={styles.cardImage}
-            />
-            <Image
-              src="/3.png"
-              alt="Gift card 3"
-              className={styles.cardImage}
-            />
-            <Image
-              src="/4.png"
-              alt="Gift card 4"
-              className={styles.cardImage}
-            />
-          </HStack>
-        </VStack>
+        {sampleCardCategories.map(({ name, cards }, idx) => (
+          <VStack key={idx} className={styles.cardCategoryContainer}>
+            <HStack className={styles.cardCategoryHeaderContainer}>
+              <Text className={styles.cardCategoryHeaderTitle}>{name}</Text>
+              <Text className={styles.cardCategoryHeaderSubtitle}>See all</Text>
+            </HStack>
+            <HStack className={styles.cardCategoryCarouselContainer}>
+              {cards.map((image, index) => (
+                <Image
+                  key={index}
+                  src={image}
+                  alt="Card"
+                  className={styles.cardCategoryCarouselImage}
+                />
+              ))}
+            </HStack>
+          </VStack>
+        ))}
       </main>
 
       <footer className={styles.footer}>
