@@ -1,10 +1,19 @@
 import Link from "next/link";
 import styles from "@styles/Navbar.module.css";
-import { HStack, Spacer, Text, Image, Box } from "@chakra-ui/react";
-// import { Search2Icon } from "@chakra-ui/icons";
+import {
+  HStack,
+  Spacer,
+  Text,
+  Image,
+  Box,
+  useDisclosure,
+} from "@chakra-ui/react";
+import { HamburgerIcon } from "@chakra-ui/icons";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { Sidebar } from "@components/Sidebar";
 
 const Navbar = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <HStack className={styles.navbar}>
       <Link href="/">
@@ -17,7 +26,14 @@ const Navbar = () => {
       </Link>
       <HStack>
         <ConnectButton />
+        <HamburgerIcon
+          onClick={onOpen}
+          className={styles.hamburgerButton}
+          w={7}
+          h={7}
+        />
       </HStack>
+      <Sidebar isOpen={isOpen} onClose={onClose} />
     </HStack>
   );
 };
