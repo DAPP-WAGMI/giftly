@@ -223,3 +223,53 @@
 
   color: black;
 }
+
+.cardCategoryHeaderContainer {
+  width: 100%;
+  justify-content: space-between !important;
+  align-items: flex-end !important;
+}
+
+.cardImage {
+  width: 360px;
+  height: 227.37px;
+  border-radius: 15px;
+}
+
+.cardCategoryHeaderTitle {
+  width: 169px;
+  height: 42px;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 42px;
+  /* identical to box height */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #000000;
+}
+
+.cardCategoryHeaderSubtitle {
+  width: 67px;
+  height: 30px;
+  left: 1566px;
+  top: 618px;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 30px;
+  /* identical to box height */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #eb498f;
+}
