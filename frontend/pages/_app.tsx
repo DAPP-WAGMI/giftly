@@ -1,6 +1,6 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import Navbar from "../components/Navbar";
+import Navbar from "@components/Navbar";
 import { useEffect, useState } from "react";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import "@rainbow-me/rainbowkit/styles.css";
