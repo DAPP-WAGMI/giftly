@@ -8,7 +8,7 @@ import {
   getDefaultWallets,
   RainbowKitProvider,
   Theme,
-  darkTheme,
+  lightTheme,
 } from "@rainbow-me/rainbowkit";
 import { publicProvider } from "wagmi/providers/public";
 import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
@@ -62,7 +62,7 @@ const theme = extendTheme({
 });
 
 /* RainbowKit Theming */
-const customTheme = merge(darkTheme(), {
+const customTheme = merge(lightTheme(), {
   colors: {
     accentColor: "#EB498F",
   },
