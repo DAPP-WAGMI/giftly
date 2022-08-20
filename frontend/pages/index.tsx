@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import { HStack, VStack, Image, Text, Button, Box } from "@chakra-ui/react";
+import Link from "next/link";
 import Footer from "@components/Footer";
 
 const sampleCardCategories = [
@@ -67,8 +68,12 @@ const Home: NextPage = () => {
               The perfect gift, for every occasion.
             </Text>
             <HStack>
-              <Button className={styles.bannerSendButton}>Send Gift</Button>
-              <Button className={styles.bannerExploreButton}>Explore </Button>
+              <Link href="/create">
+                <Button className={styles.bannerSendButton}>Send Gift</Button>
+              </Link>
+              <Link href="/explore">
+                <Button className={styles.bannerExploreButton}>Explore </Button>
+              </Link>
             </HStack>
           </VStack>
           <VStack className={styles.bannerRightSection}>
