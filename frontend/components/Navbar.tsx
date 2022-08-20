@@ -8,7 +8,7 @@ import {
   Box,
   useDisclosure,
 } from "@chakra-ui/react";
-import { HamburgerIcon } from "@chakra-ui/icons";
+import { BellIcon, HamburgerIcon } from "@chakra-ui/icons";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { Sidebar } from "@components/Sidebar";
 
@@ -24,8 +24,14 @@ const Navbar = () => {
           className={styles.logo}
         ></Image>
       </Link>
-      <HStack>
+      <HStack gap={2}>
         <ConnectButton />
+        <BellIcon
+          // onClick={onOpen}
+          className={styles.bellButton}
+          w={7}
+          h={7}
+        />
         <HamburgerIcon
           onClick={onOpen}
           className={styles.hamburgerButton}
