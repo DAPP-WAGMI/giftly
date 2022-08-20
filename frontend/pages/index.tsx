@@ -13,6 +13,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
+        <div className={styles.centerEllipse} />
         <HStack className={styles.bannerContainer}>
           <VStack className={styles.bannerLeftSection}>
             <Text className={styles.bannerTitle}>
