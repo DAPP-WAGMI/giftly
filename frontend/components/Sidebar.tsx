@@ -31,22 +31,34 @@ export const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
 
         <DrawerBody className={styles.drawerBody}>
           <Link href="/about">
-            <Button className={styles.drawerButton}>About</Button>
+            <Button className={styles.drawerButton} onClick={onClose}>
+              About
+            </Button>
           </Link>
           <Link href="/create">
-            <Button className={styles.drawerButton}>Create</Button>
+            <Button className={styles.drawerButton} onClick={onClose}>
+              Create
+            </Button>
           </Link>
-          <Link href="/mycards">
-            <Button className={styles.drawerButton}>My Cards</Button>
+          <Link href="/collection">
+            <Button className={styles.drawerButton} onClick={onClose}>
+              My Cards
+            </Button>
           </Link>
           <Link href="/leaderboard">
-            <Button className={styles.drawerButton}>Leaderboard</Button>
+            <Button className={styles.drawerButton} onClick={onClose}>
+              Leaderboard
+            </Button>
           </Link>
           <Link href="/rewards">
-            <Button className={styles.drawerButton}>Rewards</Button>
+            <Button className={styles.drawerButton} onClick={onClose}>
+              Rewards
+            </Button>
           </Link>
           <Link href="/">
-            <Button className={styles.drawerButton}>Demo</Button>
+            <Button className={styles.drawerButton} onClick={onClose}>
+              Demo
+            </Button>
           </Link>
         </DrawerBody>
         <DrawerFooter className={styles.drawerFooter}>

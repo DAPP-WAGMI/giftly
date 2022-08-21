@@ -14,3 +14,17 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.centerEllipse {
+  left: 50%;
+  transform: translateX(-50%);
+  top: -1400px;
+  width: 1939px;
+  height: 1939px;
+  background-image: url(/ellipse.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  pointer-events: none;
+  z-index: -10;
+}

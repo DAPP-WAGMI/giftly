@@ -5,6 +5,7 @@
   color: white;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 /* EDITOR CSS */
@@ -27,6 +28,8 @@
   border: 1px solid rgba(0, 0, 0, 0.2);
   padding: 2rem;
   border-radius: 30px;
+  background-color: white !important;
+  z-index: 1;
 }
 
 .editorContainer {

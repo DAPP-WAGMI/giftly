@@ -80,6 +80,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
       <WagmiConfig client={wagmiClient}>
         <RainbowKitProvider chains={chains} theme={customTheme}>
           <ChakraProvider theme={theme}>
+            <div className="centerEllipse" />
             <Navbar></Navbar>
             <Component {...pageProps} key={router.route} />
           </ChakraProvider>
