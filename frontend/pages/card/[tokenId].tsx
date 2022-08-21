@@ -148,7 +148,7 @@ const CardPage: NextPage = () => {
           <Button
             className={styles.claimButton}
             // onClick={() => setSuccess(true)}
-            onClick={claimNFT ? claimNFT : () => {}}
+            onClick={claimNFT ? (claimNFT as any) : () => {}}
           >
             {isLoading ? <Spinner color="white" /> : "Claim Gift"}
           </Button>
