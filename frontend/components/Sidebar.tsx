@@ -23,7 +23,7 @@ export const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
     <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
       <DrawerOverlay />
       <DrawerContent
-        bgColor="#fef7fa"
+        bgColor="#FFFFFF"
         borderLeft="1px solid rgba(255,255,255,.3)"
         paddingTop="3rem"
       >
@@ -31,25 +31,24 @@ export const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
 
         <DrawerBody className={styles.drawerBody}>
           <Link href="/about">
-            <Button className={styles.drawerButton}>ABOUT</Button>
+            <Button className={styles.drawerButton}>About</Button>
           </Link>
           <Link href="/create">
-            <Button className={styles.drawerButton}>CREATE</Button>
+            <Button className={styles.drawerButton}>Create</Button>
           </Link>
           <Link href="/mycards">
-            <Button className={styles.drawerButton}>MY CARDS</Button>
+            <Button className={styles.drawerButton}>My Cards</Button>
           </Link>
           <Link href="/leaderboard">
-            <Button className={styles.drawerButton}>LEADERBOARD</Button>
+            <Button className={styles.drawerButton}>Leaderboard</Button>
           </Link>
           <Link href="/rewards">
-            <Button className={styles.drawerButton}>REWARDS</Button>
+            <Button className={styles.drawerButton}>Rewards</Button>
           </Link>
           <Link href="/">
-            <Button className={styles.drawerButton}>DEMO</Button>
+            <Button className={styles.drawerButton}>Demo</Button>
           </Link>
         </DrawerBody>
-
         <DrawerFooter className={styles.drawerFooter}>
           <HStack>
             <div className={styles.drawerFooterLabel}>Made With ❤️ By</div>
