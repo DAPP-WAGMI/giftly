@@ -140,13 +140,31 @@ const receivedCardData = [
 
 const sentCardData = [
   {
+    gifter: "0xD1220A0cf47c7B9Be7A2E6BA89F429762e7b9aDb",
+    date: "Aug 18, 2022",
+    message: "Hey Laura! \nxoxo sending love and my gratitude ",
+    amount: "75",
+    tokenSymbol: "MATIC",
+    cardImage: "/cards/featured_5.jpg",
+    claimed: true,
+  },
+  {
+    gifter: "0x71f0B67FdA57F68dC5D928d0Ec775F8eF135fae6",
+    date: "Aug 18, 2022",
+    message: "Dear Mr. Foster,\nI would like to express my gratitude",
+    amount: "22",
+    tokenSymbol: "MATIC",
+    cardImage: "/cards/featured_6.jpg",
+    claimed: true,
+  },
+  {
     gifter: "0xD07b84827096306B01a2EF3193026Ed6A6BF8Fb8",
     date: "Aug 18, 2022",
     message:
-      "Dear Mr. President,\nI would like to express my gratitude for your tireless efforts to make America great again. I appreciate all that you have done to improve the economy and create jobs. I also appreciate your efforts to keep America safe by strengthen our military and improve our security. I am proud to have you as my president and I look forward to seeing more great things from you in the future.\n  Sincerely, [Your name]",
-    amount: "200",
+      "yoyoyo,\nthanks for your tireless efforts to make America great again. I appreciate all that you have done to improve the economy and create jobs. I also appreciate your efforts to keep America safe by strengthen our military and improve our security. I am proud to have you as my president and I look forward to seeing more great things from you in the future.\n  Sincerely, [Your name]",
+    amount: "50",
     tokenSymbol: "MATIC",
-    cardImage: "/cards/featured_5.png",
+    cardImage: "/cards/featured_7.jpg",
     claimed: true,
   },
   {
@@ -154,29 +172,9 @@ const sentCardData = [
     date: "Aug 18, 2022",
     message:
       "Dear Mr. President,\nI would like to express my gratitude for your tireless efforts to make America great again. I appreciate all that you have done to improve the economy and create jobs. I also appreciate your efforts to keep America safe by strengthen our military and improve our security. I am proud to have you as my president and I look forward to seeing more great things from you in the future.\n  Sincerely, [Your name]",
-    amount: "200",
+    amount: "25",
     tokenSymbol: "MATIC",
-    cardImage: "/cards/featured_6.png",
-    claimed: true,
-  },
-  {
-    gifter: "0xD07b84827096306B01a2EF3193026Ed6A6BF8Fb8",
-    date: "Aug 18, 2022",
-    message:
-      "Dear Mr. President,\nI would like to express my gratitude for your tireless efforts to make America great again. I appreciate all that you have done to improve the economy and create jobs. I also appreciate your efforts to keep America safe by strengthen our military and improve our security. I am proud to have you as my president and I look forward to seeing more great things from you in the future.\n  Sincerely, [Your name]",
-    amount: "200",
-    tokenSymbol: "MATIC",
-    cardImage: "/cards/featured_7.png",
-    claimed: true,
-  },
-  {
-    gifter: "0xD07b84827096306B01a2EF3193026Ed6A6BF8Fb8",
-    date: "Aug 18, 2022",
-    message:
-      "Dear Mr. President,\nI would like to express my gratitude for your tireless efforts to make America great again. I appreciate all that you have done to improve the economy and create jobs. I also appreciate your efforts to keep America safe by strengthen our military and improve our security. I am proud to have you as my president and I look forward to seeing more great things from you in the future.\n  Sincerely, [Your name]",
-    amount: "200",
-    tokenSymbol: "MATIC",
-    cardImage: "/cards/thanks_1.png",
+    cardImage: "/cards/thanks_1.jpg",
     claimed: true,
   },
 ];
@@ -329,7 +327,7 @@ const NFTCard = ({
           >{`Gift Amount: ${amount} ${tokenSymbol}`}</Text>
         </VStack>
         <HStack>
-          <Link href="/card/27">
+          <Link href="/card/6">
             <Button className={styles.detailsButton}>View Details</Button>
           </Link>
           {!claimed ? (

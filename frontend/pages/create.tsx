@@ -48,7 +48,7 @@ const client = new Web3Storage({
 });
 
 const demoTokenURI =
-  "https://bafybeig635sgziz6lzxuibqykgomqb2qbhpwj3bkknm2dbwo4n77tu26la.ipfs.w3s.link/tokenURI.json";
+  "https://bafybeicynj2l3xinctywttkivp44me4dkh7kqi77twtyxipmmgblkoib2a.ipfs.w3s.link/tokenURI.json";
 
 const demoRecipient = "0x005A4A8Ae3a332b953880Cd6c05A559b36bD3394";
 
@@ -117,9 +117,9 @@ const CardCreator: NextPage = () => {
     addressOrName: "0x8Dec478C52c63552708559340B6Cc4456a454d49",
     contractInterface: GiftlyProtocol.abi,
     functionName: "gift",
-    args: [demoRecipient, demoTokenURI, ethers.utils.parseEther(".01")],
+    args: [demoRecipient, demoTokenURI, ethers.utils.parseEther(".5")],
     overrides: {
-      value: ethers.utils.parseEther(".012"),
+      value: ethers.utils.parseEther(".51"),
     },
   });
 

@@ -45,7 +45,7 @@ const CardPage: NextPage = () => {
     addressOrName: "0x8Dec478C52c63552708559340B6Cc4456a454d49",
     contractInterface: GiftlyProtocol.abi,
     functionName: "claim",
-    args: [5],
+    args: [9],
   });
 
   const {
@@ -55,7 +55,7 @@ const CardPage: NextPage = () => {
     write: claimNFT,
   } = useContractWrite(config);
 
-  return success ? (
+  return isSuccess ? (
     <VStack className={styles.container}>
       <Confetti width={2000} height={1000} numberOfPieces={200} />
       <VStack className={styles.titleContainer}>
@@ -132,7 +132,7 @@ const CardPage: NextPage = () => {
           <HStack className={styles.metadataSubtitleContainer}>
             <Text className={styles.metadataSubtitle}>IPFS Metadata</Text>
             <a
-              href="https://bafybeig635sgziz6lzxuibqykgomqb2qbhpwj3bkknm2dbwo4n77tu26la.ipfs.w3s.link/tokenURI.json"
+              href="https://bafybeicynj2l3xinctywttkivp44me4dkh7kqi77twtyxipmmgblkoib2a.ipfs.w3s.link/tokenURI.json"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -147,8 +147,8 @@ const CardPage: NextPage = () => {
         <HStack>
           <Button
             className={styles.claimButton}
-            onClick={() => setSuccess(true)}
-            // onClick={claimNFT ? claimNFT : () => {}}
+            // onClick={() => setSuccess(true)}
+            onClick={claimNFT ? claimNFT : () => {}}
           >
             {isLoading ? <Spinner color="white" /> : "Claim Gift"}
           </Button>
