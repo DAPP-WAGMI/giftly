@@ -1,0 +1,11 @@
+{
+  "name": "Giftly Card Collection #27",
+  "description": "This is a gift card created by Giftly.\n\n The message on this gift card reads as follows:\n\nDear Alice, thank you so much for being such a kind and caring person. You always go out of your way to help others, and you are always so supportive and understanding. You are a true friend, and I am so grateful to have you in my life. Thank you for everything you do, and know that you are always appreciated.",
+  "image": "https://bafybeicfwn46cshiwnkxviyo3y6xltn6sqamh5qkxpp7jdogzc6vcyq4p4.ipfs.w3s.link/sample.png",
+  "image_url": "https://bafybeicfwn46cshiwnkxviyo3y6xltn6sqamh5qkxpp7jdogzc6vcyq4p4.ipfs.w3s.link/sample.png",
+  "message": "Dear Alice, thank you so much for being such a kind and caring person. You always go out of your way to help others, and you are always so supportive and understanding. You are a true friend, and I am so grateful to have you in my life. Thank you for everything you do, and know that you are always appreciated.",
+  "date": "Aug 21, 2022",
+  "amount": ".5",
+  "token": "MATIC",
+  "gifter": "Your Secret Admirer"
+}

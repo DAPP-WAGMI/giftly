@@ -136,6 +136,27 @@
   color: #ffffff;
 }
 
+.claimedButton {
+  width: 187px !important;
+  height: 77px !important;
+  border-radius: 20px !important;
+
+  background: #4a4a4a !important;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px !important;
+  line-height: 33px;
+  /* identical to box height */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #ffffff;
+}
+
 .detailsButton {
   width: 187px !important;
   height: 77px !important;

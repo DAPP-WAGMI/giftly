@@ -95,3 +95,50 @@
   text-decoration: none !important;
   opacity: 1;
 }
+
+.notificationBox {
+  position: relative;
+  top: -3px;
+}
+
+.redAlert {
+  position: absolute;
+  opacity: 1;
+  right: 0;
+  top: 5px;
+  width: 15px;
+  z-index: 10;
+}
+
+.giftIcon {
+  width: 30px;
+  opacity: 0.5;
+}
+
+.notificationContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0.5rem 0.5rem;
+  width: 100%;
+}
+
+.notificationTitleContainer {
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+}
+
+.notificationTitle {
+  font-family: "Poppins";
+  font-weight: 700;
+  color: black;
+}
+
+.notificationSubtitle {
+  margin-top: 0 !important;
+  font-family: "Poppins";
+  font-weight: 400;
+  color: black;
+  opacity: 0.5;
+}

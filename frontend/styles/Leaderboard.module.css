@@ -336,11 +336,11 @@
 
 .filterSection {
   width: 100%;
-  justify-content: center;
+  justify-content: flex-end;
 
   font-family: "Poppins";
   font-style: normal;
-  font-weight: 600;
+  font-weight: 400;
   font-size: 20px;
   line-height: 30px;
   /* identical to box height */

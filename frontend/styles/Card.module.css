@@ -31,6 +31,8 @@
   font-size: 36px;
   display: flex;
   align-items: center;
+  margin-top: 0 !important;
+  padding-bottom: 1rem;
 
   color: #eb498f;
 }
@@ -245,4 +247,35 @@
   text-align: center;
 
   color: rgba(54, 54, 54, 0.8);
+}
+
+.yaySubtitle {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  /* identical to box height */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #848484;
+}
+
+.yaySubtitle:hover {
+  text-decoration: underline;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  /* identical to box height */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #848484;
 }

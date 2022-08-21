@@ -57,39 +57,84 @@ const data = {
 const receivedCardData = [
   {
     gifter: "0xD07b84827096306B01a2EF3193026Ed6A6BF8Fb8",
-    date: "Aug 18, 2022",
-    message:
-      "Dear Mr. President,\nI would like to express my gratitude for your tireless efforts to make America great again. I appreciate all that you have done to improve the economy and create jobs. I also appreciate your efforts to keep America safe by strengthen our military and improve our security. I am proud to have you as my president and I look forward to seeing more great things from you in the future.\n  Sincerely, [Your name]",
-    amount: "200",
+    date: "Aug. 21st, 2022",
+    message: "Dear Alice, thank you so much for being such ",
+    amount: "0.5",
     tokenSymbol: "MATIC",
-    cardImage: "/1.png",
+    cardImage: "/cards/appreciation_2.jpg",
+    claimed: false,
+  },
+  {
+    gifter: "0x5A84969bb6627C5A094b478EE979C1dF1069b99A",
+    date: "Jun. 16th, 2022",
+    message: "hey alice! thanks for helping me with last week",
+    amount: "50",
+    tokenSymbol: "USDC",
+    cardImage: "/cards/featured_3.jpg",
+    claimed: true,
+  },
+  {
+    gifter: "0x6F46CF5569A67588B43E4134D88A1aDC40e4dc6D",
+    date: "May 5th, 2022",
+    message: "HAPPY BIRTHDAY BADDEST BISHHHH! THIS FRIDAY",
+    amount: "20",
+    tokenSymbol: "MATIC",
+    cardImage: "/cards/birthday_5.jpg",
+    claimed: true,
+  },
+  {
+    gifter: "0xD1220A0cf47c7B9Be7A2E6BA89F429762e7b9aDb",
+    date: "Apr. 1st, 2022",
+    message: "Dear Alice, you are the kindest soul ever to exist.",
+    amount: "25",
+    tokenSymbol: "MATIC",
+    cardImage: "/cards/love_1.jpg",
+    claimed: true,
   },
   {
     gifter: "0xD07b84827096306B01a2EF3193026Ed6A6BF8Fb8",
-    date: "Aug 18, 2022",
-    message:
-      "Dear Mr. President,\nI would like to express my gratitude for your tireless efforts to make America great again. I appreciate all that you have done to improve the economy and create jobs. I also appreciate your efforts to keep America safe by strengthen our military and improve our security. I am proud to have you as my president and I look forward to seeing more great things from you in the future.\n  Sincerely, [Your name]",
-    amount: "200",
-    tokenSymbol: "MATIC",
-    cardImage: "/2.png",
+    date: "Mar. 17th, 2022",
+    message: "You are an amazing person and I cherish our.",
+    amount: "100",
+    tokenSymbol: "USDC",
+    cardImage: "/cards/love_2.jpg",
+    claimed: true,
   },
   {
-    gifter: "0xD07b84827096306B01a2EF3193026Ed6A6BF8Fb8",
+    gifter: "0x95cED938F7991cd0dFcb48F0a06A5Dd051d7CC1C",
     date: "Aug 18, 2022",
-    message:
-      "Dear Mr. President,\nI would like to express my gratitude for your tireless efforts to make America great again. I appreciate all that you have done to improve the economy and create jobs. I also appreciate your efforts to keep America safe by strengthen our military and improve our security. I am proud to have you as my president and I look forward to seeing more great things from you in the future.\n  Sincerely, [Your name]",
-    amount: "200",
-    tokenSymbol: "MATIC",
-    cardImage: "/3.png",
+    message: "sending you good vibez today:) let me know",
+    amount: "30",
+    tokenSymbol: "USDT",
+    cardImage: "/cards/appreciation_4.jpg",
+    claimed: true,
   },
   {
-    gifter: "0xD07b84827096306B01a2EF3193026Ed6A6BF8Fb8",
-    date: "Aug 18, 2022",
-    message:
-      "Dear Mr. President,\nI would like to express my gratitude for your tireless efforts to make America great again. I appreciate all that you have done to improve the economy and create jobs. I also appreciate your efforts to keep America safe by strengthen our military and improve our security. I am proud to have you as my president and I look forward to seeing more great things from you in the future.\n  Sincerely, [Your name]",
-    amount: "200",
+    gifter: "0x3E5e9111Ae8eB78Fe1CC3bb89e84269D7aA5A296",
+    date: "Feb. 14th, 2022",
+    message: "Alice, you single-handedly ran the show today",
+    amount: "20",
+    tokenSymbol: "USDC",
+    cardImage: "/cards/appreciation_1.jpg",
+    claimed: true,
+  },
+  {
+    gifter: "0x28a8746e75304c0780E011B41825785639C52814",
+    date: "Jan. 1st, 2022",
+    message: "Thank you so much for last week's work. Really",
+    amount: "20",
     tokenSymbol: "MATIC",
-    cardImage: "/4.png",
+    cardImage: "/cards/thanks_3.jpg",
+    claimed: true,
+  },
+  {
+    gifter: "0x71f0B67FdA57F68dC5D928d0Ec775F8eF135fae6",
+    date: "Oct. 28th, 2021",
+    message: "Hey Alice, I know things have been tough lately",
+    amount: "50",
+    tokenSymbol: "MATIC",
+    cardImage: "/cards/featured_4.jpg",
+    claimed: true,
   },
 ];
 
@@ -101,7 +146,7 @@ const sentCardData = [
       "Dear Mr. President,\nI would like to express my gratitude for your tireless efforts to make America great again. I appreciate all that you have done to improve the economy and create jobs. I also appreciate your efforts to keep America safe by strengthen our military and improve our security. I am proud to have you as my president and I look forward to seeing more great things from you in the future.\n  Sincerely, [Your name]",
     amount: "200",
     tokenSymbol: "MATIC",
-    cardImage: "/5.png",
+    cardImage: "/cards/featured_5.png",
   },
   {
     gifter: "0xD07b84827096306B01a2EF3193026Ed6A6BF8Fb8",
@@ -110,7 +155,7 @@ const sentCardData = [
       "Dear Mr. President,\nI would like to express my gratitude for your tireless efforts to make America great again. I appreciate all that you have done to improve the economy and create jobs. I also appreciate your efforts to keep America safe by strengthen our military and improve our security. I am proud to have you as my president and I look forward to seeing more great things from you in the future.\n  Sincerely, [Your name]",
     amount: "200",
     tokenSymbol: "MATIC",
-    cardImage: "/6.png",
+    cardImage: "/cards/featured_6.png",
   },
   {
     gifter: "0xD07b84827096306B01a2EF3193026Ed6A6BF8Fb8",
@@ -119,7 +164,7 @@ const sentCardData = [
       "Dear Mr. President,\nI would like to express my gratitude for your tireless efforts to make America great again. I appreciate all that you have done to improve the economy and create jobs. I also appreciate your efforts to keep America safe by strengthen our military and improve our security. I am proud to have you as my president and I look forward to seeing more great things from you in the future.\n  Sincerely, [Your name]",
     amount: "200",
     tokenSymbol: "MATIC",
-    cardImage: "/7.png",
+    cardImage: "/cards/featured_7.png",
   },
   {
     gifter: "0xD07b84827096306B01a2EF3193026Ed6A6BF8Fb8",
@@ -128,7 +173,7 @@ const sentCardData = [
       "Dear Mr. President,\nI would like to express my gratitude for your tireless efforts to make America great again. I appreciate all that you have done to improve the economy and create jobs. I also appreciate your efforts to keep America safe by strengthen our military and improve our security. I am proud to have you as my president and I look forward to seeing more great things from you in the future.\n  Sincerely, [Your name]",
     amount: "200",
     tokenSymbol: "MATIC",
-    cardImage: "/8.png",
+    cardImage: "/cards/thanks_1.png",
   },
 ];
 
@@ -189,7 +234,7 @@ const Collection: NextPage = () => {
         </ButtonGroup>
       </HStack>
       <VStack className={styles.cardListContainer}>
-        {fetchedNFTCards.map(
+        {/* {fetchedNFTCards.map(
           (
             { gifter, date, message, amount, tokenSymbol, cardImage },
             index
@@ -207,10 +252,10 @@ const Collection: NextPage = () => {
               showDivider={index !== filteredCards.length - 1}
             />
           )
-        )}
+        )} */}
         {filteredCards.map(
           (
-            { gifter, date, message, amount, tokenSymbol, cardImage },
+            { gifter, date, message, amount, tokenSymbol, cardImage, claimed },
             index
           ) => (
             <NFTCard
@@ -223,6 +268,7 @@ const Collection: NextPage = () => {
               cardImage={cardImage}
               index={index}
               selected={selected}
+              claimed={claimed}
               showDivider={index !== filteredCards.length - 1}
             />
           )
@@ -241,6 +287,7 @@ type NFTCardProps = {
   tokenSymbol: string;
   cardImage: string;
   index: number;
+  claimed: boolean;
   showDivider?: boolean;
 };
 
@@ -253,6 +300,7 @@ const NFTCard = ({
   tokenSymbol,
   cardImage,
   index,
+  claimed,
   showDivider = true,
 }: NFTCardProps) => {
   return (
@@ -277,10 +325,16 @@ const NFTCard = ({
           >{`Gift Amount: ${amount} ${tokenSymbol}`}</Text>
         </VStack>
         <HStack>
-          <Button className={styles.detailsButton}>View Details</Button>
-          <Link href="/card/1">
-            <Button className={styles.claimButton}>Claim Gift</Button>
+          <Link href="/card/27">
+            <Button className={styles.detailsButton}>View Details</Button>
           </Link>
+          {!claimed ? (
+            <Button className={styles.claimButton}>Claim Gift</Button>
+          ) : (
+            <Button isDisabled className={styles.claimedButton}>
+              Claimed
+            </Button>
+          )}
         </HStack>
       </HStack>
       {showDivider && <hr className={styles.divider}></hr>}

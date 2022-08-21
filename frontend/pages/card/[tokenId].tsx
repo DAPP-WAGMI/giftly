@@ -20,22 +20,72 @@ import Link from "next/link";
 import { abridgeAddress } from "@utils/abridgeAddress";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import withTransition from "@components/withTransition";
+import GiftlyProtocol from "@data/GiftlyProtocol.json";
+import { useAccount, usePrepareContractWrite, useContractWrite } from "wagmi";
+import Confetti from "react-confetti";
+import { useState } from "react";
 
 const data = {
-  gifter: "0xD07b84827096306B01a2EF3193026Ed6A6BF8Fb8",
-  date: "Aug 18, 2022",
+  gifter: "Your Secret Admirer",
+  date: "Aug. 21st, 2022",
   message:
-    "Dear Mr. President,\nI would like to express my gratitude for your tireless efforts to make America great again. I appreciate all that you have done to improve the economy and create jobs. I also appreciate your efforts to keep America safe by strengthen our military and improve our security. I am proud to have you as my president and I look forward to seeing more great things from you in the future.\n  Sincerely, [Your name]",
-  amount: "200",
+    "Dear Alice, thank you so much for being such a kind and caring person. You always go out of your way to help others, and you are always so supportive and understanding. You are a true friend, and I am so grateful to have you in my life. Thank you for everything you do, and know that you are always appreciated.",
+  amount: "0.5",
   tokenSymbol: "MATIC",
-  cardImage: "/main.png",
+  cardImage: "/cards/appreciation_2.jpg",
 };
 
 const CardPage: NextPage = () => {
   const router = useRouter();
   const { tokenId } = router.query;
+  const [success, setSuccess] = useState<boolean>(false);
 
-  return (
+  const { config } = usePrepareContractWrite({
+    addressOrName: "0x8Dec478C52c63552708559340B6Cc4456a454d49",
+    contractInterface: GiftlyProtocol.abi,
+    functionName: "claim",
+    args: [5],
+  });
+
+  const {
+    data: txnData,
+    isLoading,
+    isSuccess,
+    write: claimNFT,
+  } = useContractWrite(config);
+
+  return success ? (
+    <VStack className={styles.container}>
+      <Confetti width={2000} height={1000} numberOfPieces={200} />
+      <VStack className={styles.titleContainer}>
+        <Text className={styles.title}>
+          Yay! You've successfully claimed your gift:)
+        </Text>
+      </VStack>
+
+      <VStack className={styles.contentContainer} gap={5}>
+        <Image
+          src={data.cardImage}
+          alt="nft sample"
+          cursor="pointer"
+          className={styles.cardImage}
+        ></Image>
+        <a
+          href={
+            txnData
+              ? `https://mumbai.polygonscan.com/tx/${txnData.hash}`
+              : "https://mumbai.polygonscan.com/tx/0x765cd806c4a62fdfe56be820487a9537d1125bc3ee2cc7c23ee3958ebffcb460"
+          }
+          rel="noreferrer"
+          target="_blank"
+        >
+          <Text className={styles.yaySubtitle}>
+            See Transaction on Polygonscan
+          </Text>
+        </a>
+      </VStack>
+    </VStack>
+  ) : (
     <VStack className={styles.container}>
       <VStack className={styles.titleContainer}>
         <Text className={styles.title}>
@@ -69,11 +119,23 @@ const CardPage: NextPage = () => {
             <Text className={styles.metadataSubtitle}>
               Polygonscan Transaction
             </Text>
-            <ExternalLinkIcon />
+            <a
+              href="https://polygonscan.com/tx/0x9f8f4d66d988f9b7b6c6c8b85a8d3dc0dafd8020"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <ExternalLinkIcon />
+            </a>
           </HStack>
           <HStack className={styles.metadataSubtitleContainer}>
             <Text className={styles.metadataSubtitle}>IPFS Metadata</Text>
-            <ExternalLinkIcon />
+            <a
+              href="https://bafybeig635sgziz6lzxuibqykgomqb2qbhpwj3bkknm2dbwo4n77tu26la.ipfs.w3s.link/tokenURI.json"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <ExternalLinkIcon />
+            </a>
           </HStack>
           <HStack className={styles.metadataSubtitleContainer}>
             <Text className={styles.metadataSubtitle}>View on Opensea</Text>
@@ -81,10 +143,16 @@ const CardPage: NextPage = () => {
           </HStack>
         </VStack>
         <HStack>
+          <Button
+            className={styles.claimButton}
+            onClick={() => setSuccess(true)}
+            // onClick={claimNFT ? claimNFT : () => {}}
+          >
+            {isLoading ? <Spinner color="white" /> : "Claim Gift"}
+          </Button>
           <Link href="/">
-            <Button className={styles.claimButton}>Claim Gift</Button>
+            <Button className={styles.detailsButton}>Claim Later</Button>
           </Link>
-          <Button className={styles.detailsButton}>Claim Later</Button>
         </HStack>
       </VStack>
     </VStack>
