@@ -19,6 +19,8 @@ import { useCallback, useState } from "react";
 //   import db from "@firebase/firebase";
 import Link from "next/link";
 import withTransition from "@components/withTransition";
+import { NFTStorage } from "nft.storage";
+import CIDs from "@data/cid";
 
 const cards = [
   "/1.png",
@@ -30,6 +32,8 @@ const cards = [
   "/7.png",
   "/8.png",
 ];
+
+const NFT_STORAGE_TOKEN = process.env.NEXT_PUBLIC_NFT_STORAGE_API_KEY;
 
 const CardCreator: NextPage = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -47,6 +51,10 @@ const CardCreator: NextPage = () => {
   const [showTier, setShowTier] = useState<boolean>(true);
   const [selectedSocial, setSelectedSocial] = useState<string>("");
 
+  console.log("hello: ", process.env.NEXT_PUBLIC_NFT_STORAGE_API_KEY);
+
+  const client = new NFTStorage({ token: NFT_STORAGE_TOKEN });
+
   const saveContract = useCallback(async (address: string) => {
     // const docRef = doc(db, "contracts", address.toLowerCase());
     // await setDoc(docRef, {
@@ -59,6 +67,27 @@ const CardCreator: NextPage = () => {
     //   githubRepoURL: githubURL ?? "https://github.com/iamminci/verbsdao",
     // });
   }, []);
+
+  const { config } = usePrepareContractWrite({
+    addressOrName: nftAddress
+      ? nftAddress
+      : "0x2E20684B8082aaeE594999324E154111d55b58bb",
+    contractInterface: communityNFT.abi,
+    functionName: "mint",
+  });
+
+  const { data: txn, isLoading, isSuccess, write } = useContractWrite(config);
+
+  const uploadData = async () => {
+    // const imageFile = new File([someBinaryImageData], "nft.png", {
+    //   type: "image/png",
+    // });
+    const metadata = await client.store({
+      name: "Community NFT",
+      description: "Just try to funge it. You can't do it.",
+      image: CIDs["1"],
+    });
+  };
 
   const publishNFT = useCallback(async () => {
     setLoading(true);
@@ -346,16 +375,16 @@ const Form = ({
         <VStack className={styles.noteTextContainer} gap={3}>
           <Text className={styles.noteHeader}>Note</Text>
           <Text className={styles.noteBullet}>
-            - A 2% of the gift amount will be added as a fee to send a gift card
+            • A 2% of the gift amount will be added as a fee to send a gift card
           </Text>
           <Text className={styles.noteBullet}>
-            - Half of this fee will be sent to this month’s donation
+            • Half of this fee will be sent to this month’s donation
           </Text>
           <Text className={styles.noteBullet}>
-            - The remaining half will be sent to the Giftly Treasury
+            • The remaining half will be sent to the Giftly Treasury
           </Text>
           <Text className={styles.noteBullet}>
-            - A scheduled send will require an additional upfront gas fee
+            • A scheduled send will require an additional upfront gas fee
             payment
           </Text>
         </VStack>
@@ -450,3 +479,19 @@ const Preview = ({
 };
 
 export default withTransition(CardCreator);
+function usePrepareContractWrite(arg0: {
+  addressOrName: any;
+  contractInterface: any;
+  functionName: string;
+}): { config: any } {
+  throw new Error("Function not implemented.");
+}
+
+function useContractWrite(config: any): {
+  data: any;
+  isLoading: any;
+  isSuccess: any;
+  write: any;
+} {
+  throw new Error("Function not implemented.");
+}
