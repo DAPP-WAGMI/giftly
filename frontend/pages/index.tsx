@@ -8,42 +8,58 @@ import withTransition from "@components/withTransition";
 
 const sampleCardCategories = [
   {
-    name: "Celebration",
-    cards: [
-      "/1.png",
-      "/2.png",
-      "/3.png",
-      "/4.png",
-      "/5.png",
-      "/6.png",
-      "/7.png",
-      "/8.png",
-    ],
-  },
-  {
     name: "Appreciation",
     cards: [
-      "/5.png",
-      "/6.png",
-      "/7.png",
-      "/8.png",
-      "/1.png",
-      "/2.png",
-      "/3.png",
-      "/4.png",
+      "/appreciation_1.jpg",
+      "/appreciation_2.jpg",
+      "/appreciation_3.jpg",
+      "/appreciation_4.jpg",
+      "/appreciation_5.jpg",
+      "/appreciation_6.jpg",
+      "/appreciation_7.jpg",
     ],
   },
   {
     name: "Birthday",
     cards: [
-      "/1.png",
-      "/2.png",
-      "/3.png",
-      "/4.png",
-      "/5.png",
-      "/6.png",
-      "/7.png",
-      "/8.png",
+      "/birthday_1.jpg",
+      "/birthday_2.jpg",
+      "/birthday_3.jpg",
+      "/birthday_4.jpg",
+      "/birthday_5.jpg",
+    ],
+  },
+  {
+    name: "Love",
+    cards: [
+      "/love_1.jpg",
+      "/love_2.jpg",
+      "/love_3.jpg",
+      "/love_4.jpg",
+      "/love_5.jpg",
+    ],
+  },
+  {
+    name: "Thanks",
+    cards: [
+      "/thanks_1.jpg",
+      "/thanks_2.jpg",
+      "/thanks_3.jpg",
+      "/thanks_4.jpg",
+      "/thanks_5.jpg",
+      "/thanks_6.jpg",
+    ],
+  },
+  {
+    name: "Featured",
+    cards: [
+      "/featured_1.jpg",
+      "/featured_2.jpg",
+      "/featured_3.jpg",
+      "/featured_4.jpg",
+      "/featured_5.jpg",
+      "/featured_6.jpg",
+      "/featured_7.jpg",
     ],
   },
 ];
@@ -95,7 +111,7 @@ const Home: NextPage = () => {
               {cards.map((image, index) => (
                 <Image
                   key={index}
-                  src={image}
+                  src={`/cards${image}`}
                   alt="Card"
                   className={styles.cardCategoryCarouselImage}
                 />

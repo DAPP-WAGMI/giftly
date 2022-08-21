@@ -22,7 +22,7 @@ import withTransition from "@components/withTransition";
 import CIDs from "@data/cid.json";
 import { Web3Storage } from "web3.storage";
 import GiftlyProtocol from "@data/GiftlyProtocol.json";
-import { usePrepareContractWrite, useContractWrite } from "wagmi";
+import { useAccount, usePrepareContractWrite, useContractWrite } from "wagmi";
 import { ethers } from "ethers";
 
 const cards = [
@@ -36,7 +36,6 @@ const cards = [
   "/8.png",
 ];
 
-const NFT_STORAGE_TOKEN = process.env.NEXT_PUBLIC_NFT_STORAGE_API_KEY;
 const WEB3_STORAGE_TOKEN =
   process.env.NEXT_PUBLIC_WEB3_STORAGE_API_KEY ??
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweERjNTkyMTc3NjlhNjFkMjU1NzliMDlmNzhBQWMyYkNGMTY0NDcxMmQiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NjEwNTcyNzU5NDMsIm5hbWUiOiJnaWZ0bHkifQ.0behxUifkGPImkPNiaZOFw-61QP8NszNvw6UOEd1Eyo";
@@ -54,9 +53,11 @@ const CardCreator: NextPage = () => {
   const [selectedTheme, setSelectedTheme] = useState<string>("midnight");
   const [uploadedLogoFile, setUploadedLogoFile] = useState<any>("");
   const [uploadedLogoURL, setUploadedLogoURL] = useState<string>("");
-  const [communityName, setCommunityName] = useState<string>("");
-  const [communityDescription, setCommunityDescription] = useState<string>("");
-  const [protocolAddress, setProtocolAddress] = useState<string>("");
+  const [recipient, setRecipient] = useState<string>("");
+  const [gifterName, setGifterName] = useState<string>("");
+  const [message, setMessage] = useState<string>("");
+  const [amount, setAmount] = useState<string>("");
+  const [token, setToken] = useState<string>("");
   const [tokenSupply, setTokenSupply] = useState<string>("1");
   const [githubURL, setGithubURL] = useState<string>("");
   const [showRank, setShowRank] = useState<boolean>(true);
@@ -65,20 +66,21 @@ const CardCreator: NextPage = () => {
 
   const [tokenURI, setTokenURI] = useState<string>("");
 
+  const { address } = useAccount();
+
   function getFilesObject() {
     const obj = {
-      name: "Giftly Gift Card Collection #1",
-      description: "Giftly: desciprhgipewhgipewj",
+      name: "Giftly Card Collection #1",
+      description: `This is a gift card created by Giftly. \n${message}`,
       image:
         "https://bafkreigmxaglcivuzullazjnwvmtbzo3ioqeqp54azgw2lr66oy6rpvowa.ipfs.nftstorage.link/",
       image_url:
         "https://bafkreigmxaglcivuzullazjnwvmtbzo3ioqeqp54azgw2lr66oy6rpvowa.ipfs.nftstorage.link/",
-      message:
-        "Dear Mr. President,\nI would like to express my gratitude for your tireless efforts to make America great again. I appreciate all that you have done to improve the economy and create jobs. I also appreciate your efforts to keep America safe by strengthen our military and improve our security. I am proud to have you as my president and I look forward to seeing more great things from you in the future.\n  Sincerely, [Your name]",
-      date: "2022-08-21T04:27:26.274Z",
-      amount: "200",
+      message: message,
+      date: new Date(),
+      amount: ethers.utils.parseEther(amount),
       token: "MATIC",
-      gifter: "0xD07b84827096306B01a2EF3193026Ed6A6BF8Fb8",
+      gifter: gifterName ?? address,
     };
     const blob = new Blob([JSON.stringify(obj)], { type: "application/json" });
 
@@ -107,11 +109,7 @@ const CardCreator: NextPage = () => {
     addressOrName: "0x8Dec478C52c63552708559340B6Cc4456a454d49",
     contractInterface: GiftlyProtocol.abi,
     functionName: "gift",
-    args: [
-      "0xC33003bcEF8DB78167EC77f6ed3B904f8C814649",
-      tokenURI,
-      ethers.utils.parseEther(".01"),
-    ],
+    args: [recipient, tokenURI, ethers.utils.parseEther(".01")],
     overrides: {
       value: ethers.utils.parseEther(".012"),
     },
@@ -124,82 +122,45 @@ const CardCreator: NextPage = () => {
     write: giftNFT,
   } = useContractWrite(config);
 
-  //   const handleLogoFileUpload = async () => {
-  //     const formData = new FormData();
-  //     // formData.append("myFile", uploadedLogoFile, uploadedLogoFile.name);
+  const handleRecipientChange = (event: any) => {
+    console.log("name: ", event.target.value);
+    setRecipient(event.target.value);
+  };
 
-  //     console.log(uploadedLogoFile);
+  const handleGifterNameChange = (event: any) => {
+    console.log("name: ", event.target.value);
+    setGifterName(event.target.value);
+  };
 
-  //     // Request made to the backend api
-  //     // await axios.post("api/uploadfile", formData);
-  //     console.log("logo file successfully uploaded");
-  //     // return uploadedLogoURL;
+  const handleMessageChange = (event: any) => {
+    console.log("protocol: ", event.target.value);
+    setMessage(event.target.value);
+  };
+
+  const handleAmountChange = (event: any) => {
+    console.log("github: ", event.target.value);
+    setAmount(event.target.value);
+  };
+
+  const handleSelectToken = (e: any) => {
+    e.preventDefault();
+    setToken(e.target.value);
+  };
+
+  //   const handleSelectToken = (event: any) => {
+  //     console.log("token supply: ", event.target.value);
+  //     // setTokenSupply(event.target.value);
   //   };
 
-  //   const giftNFT = useCallback(async () => {
-  //     setLoading(true);
-  //     try {
-  //       const tokenURI = await uploadMetadata();
+  //   const toggleRank = (event: any) => {
+  //     console.log("event: ", event.target.checked);
+  //     // setShowRank(event.target.checked);
+  //   };
 
-  //       const response = await fetch("http://localhost:3001/gift", {
-  //         method: "POST",
-  //         body: JSON.stringify({
-  //           recipient: "0xC33003bcEF8DB78167EC77f6ed3B904f8C814649",
-  //           tokenURI,
-  //           amount: ethers.utils.parseEther(".01"),
-  //           value: ethers.utils.parseEther(".012"),
-  //         }),
-  //         headers: {
-  //           "content-type": "application/json",
-  //           "Access-Control-Allow-Origin": "*",
-  //         },
-  //       });
-
-  //       const data = await response.json();
-  //       console.log("data: ", data);
-  //       //   setPublishedContract(data.contractAddress);
-  //       //   const logoURL = handleLogoFileUpload();
-  //       //   saveContract(data.contractAddress);
-  //     } catch (err) {
-  //       console.log("Error request: ", err);
-  //     }
-  //     setLoading(false);
-  //   }, []);
-
-  const handleNameChange = (event: any) => {
-    console.log("name: ", event.target.value);
-    // setCommunityName(event.target.value);
-  };
-
-  const handleDescriptionChange = (event: any) => {
-    console.log("name: ", event.target.value);
-    // setCommunityDescription(event.target.value);
-  };
-
-  const handleProtocolChange = (event: any) => {
-    console.log("protocol: ", event.target.value);
-    // setProtocolAddress(event.target.value);
-  };
-
-  const handleGithubURLChange = (event: any) => {
-    console.log("github: ", event.target.value);
-    // setGithubURL(event.target.value);
-  };
-
-  const handleTokenSupplyChange = (event: any) => {
-    console.log("token supply: ", event.target.value);
-    // setTokenSupply(event.target.value);
-  };
-
-  const toggleRank = (event: any) => {
-    console.log("event: ", event.target.checked);
-    // setShowRank(event.target.checked);
-  };
-
-  const toggleTier = (event: any) => {
-    console.log("event: ", event.target.checked);
-    // setShowTier(event.target.checked);
-  };
+  //   const toggleTier = (event: any) => {
+  //     console.log("event: ", event.target.checked);
+  //     // setShowTier(event.target.checked);
+  //   };
 
   return (
     <HStack className={styles.container}>
@@ -216,18 +177,11 @@ const CardCreator: NextPage = () => {
           />
           <Box className={styles.spacer}></Box>
           <Form
-            // setSelectedTheme={setSelectedTheme}
-            // selectedTheme={selectedTheme}
-            // uploadedLogoFile={uploadedLogoFile}
-            handleNameChange={handleNameChange}
-            handleDescriptionChange={handleDescriptionChange}
-            handleProtocolChange={handleProtocolChange}
-            handleGithubURLChange={handleGithubURLChange}
-            handleTokenSupplyChange={handleTokenSupplyChange}
-            // handleSelectSocial={handleSelectSocial}
-            // selectedSocial={selectedSocial}
-            toggleRank={toggleRank}
-            // toggleTier={toggleTier}
+            handleRecipientChange={handleRecipientChange}
+            handleGifterNameChange={handleGifterNameChange}
+            handleMessageChange={handleMessageChange}
+            handleAmountChange={handleAmountChange}
+            handleSelectToken={handleSelectToken}
             isLoading={loading}
             giftNFT={giftNFT}
             uploadMetadata={uploadMetadata}
@@ -259,11 +213,11 @@ const CardCreator: NextPage = () => {
 };
 
 type FormProps = {
-  handleNameChange: (event: any) => void;
-  handleDescriptionChange: (event: any) => void;
-  handleProtocolChange: (event: any) => void;
-  handleGithubURLChange: (event: any) => void;
-  handleTokenSupplyChange: (event: any) => void;
+  handleRecipientChange: (event: any) => void;
+  handleGifterNameChange: (event: any) => void;
+  handleMessageChange: (event: any) => void;
+  handleAmountChange: (event: any) => void;
+  handleSelectToken: (event: any) => void;
   toggleRank: (event: any) => void;
   uploadMetadata: () => Promise<string>;
   giftNFT: any;
@@ -271,11 +225,11 @@ type FormProps = {
 };
 
 const Form = ({
-  handleNameChange,
-  handleDescriptionChange,
-  handleProtocolChange,
-  handleGithubURLChange,
-  handleTokenSupplyChange,
+  handleRecipientChange,
+  handleGifterNameChange,
+  handleMessageChange,
+  handleAmountChange,
+  handleSelectToken,
   uploadMetadata,
   giftNFT,
   toggleRank,
@@ -289,18 +243,19 @@ const Form = ({
           <Input
             className={styles.editorInput}
             placeholder="Giftee Address (Required)"
-            onChange={handleNameChange}
+            onChange={handleRecipientChange}
           />
         </VStack>
+
         <VStack className={styles.section}>
           <Text className={styles.editorHeader}>From</Text>
           <Input
             className={styles.editorInput}
             placeholder="Gifter Name (Optional)"
-            onChange={handleDescriptionChange}
+            onChange={handleGifterNameChange}
           />
           <HStack>
-            <Switch defaultChecked colorScheme="pink" onChange={toggleRank} />
+            <Switch defaultChecked colorScheme="pink" onChange={() => {}} />
             <Text className={styles.editorText}>
               Display Wallet Address if name is not specified
             </Text>
@@ -311,8 +266,8 @@ const Form = ({
           <Text className={styles.editorHeader}>Message</Text>
           <Textarea
             className={styles.messageInput}
-            placeholder="Enter Contract Address"
-            onChange={handleProtocolChange}
+            placeholder="Enter Message"
+            onChange={handleMessageChange}
           />
         </VStack>
         <VStack className={styles.section}>
@@ -321,10 +276,13 @@ const Form = ({
             <Input
               className={styles.editorInput}
               placeholder="20"
-              onChange={handleGithubURLChange}
+              onChange={handleAmountChange}
             />
-            <Select placeholder="Select option" className={styles.editorSelect}>
-              <option value="MATIC">MATIC</option>
+            <Select
+              placeholder="MATIC"
+              className={styles.editorSelect}
+              onChange={handleSelectToken}
+            >
               <option value="USDC">USDC</option>
               <option value="USDT">USDT</option>
               <option value="WBTC">WBTC</option>
@@ -345,27 +303,6 @@ const Form = ({
               size="md"
               type="datetime-local"
             />
-            {/* <Select
-            placeholder="Select option"
-            className={styles.editorSelect}
-            onChange={handleSelectSocial}
-          >
-            <option value="discord">Discord</option>
-            <option value="option2">Twitter</option>
-            <option value="option3">Telegram</option>
-          </Select>
-          <a
-            href="https://discord.com/api/oauth2/authorize?client_id=1004630657886072833&permissions=8591056896&scope=bot"
-            rel="noreferrer"
-            target="_blank"
-          >
-            <Button
-              disabled={selectedSocial !== "discord"}
-              className={styles.editorButton}
-            >
-              Link
-            </Button>
-          </a> */}
           </HStack>
         </VStack>
         <VStack className={styles.section}>
@@ -488,3 +425,45 @@ const Preview = ({
 };
 
 export default withTransition(CardCreator);
+
+//   const handleLogoFileUpload = async () => {
+//     const formData = new FormData();
+//     // formData.append("myFile", uploadedLogoFile, uploadedLogoFile.name);
+
+//     console.log(uploadedLogoFile);
+
+//     // Request made to the backend api
+//     // await axios.post("api/uploadfile", formData);
+//     console.log("logo file successfully uploaded");
+//     // return uploadedLogoURL;
+//   };
+
+//   const giftNFT = useCallback(async () => {
+//     setLoading(true);
+//     try {
+//       const tokenURI = await uploadMetadata();
+
+//       const response = await fetch("http://localhost:3001/gift", {
+//         method: "POST",
+//         body: JSON.stringify({
+//           recipient: "0xC33003bcEF8DB78167EC77f6ed3B904f8C814649",
+//           tokenURI,
+//           amount: ethers.utils.parseEther(".01"),
+//           value: ethers.utils.parseEther(".012"),
+//         }),
+//         headers: {
+//           "content-type": "application/json",
+//           "Access-Control-Allow-Origin": "*",
+//         },
+//       });
+
+//       const data = await response.json();
+//       console.log("data: ", data);
+//       //   setPublishedContract(data.contractAddress);
+//       //   const logoURL = handleLogoFileUpload();
+//       //   saveContract(data.contractAddress);
+//     } catch (err) {
+//       console.log("Error request: ", err);
+//     }
+//     setLoading(false);
+//   }, []);
