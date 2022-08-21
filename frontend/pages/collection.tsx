@@ -19,6 +19,7 @@ import { abridgeAddress } from "@utils/abridgeAddress";
 import { abridgeMessage } from "@utils/abridgeMessage";
 import { useState } from "react";
 import Link from "next/link";
+import withTransition from "@components/withTransition";
 
 const receivedCardData = [
   {
@@ -169,4 +170,4 @@ const Collection: NextPage = () => {
   );
 };
 
-export default Collection;
+export default withTransition(Collection);

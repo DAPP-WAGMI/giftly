@@ -18,6 +18,7 @@ import { useCallback, useState } from "react";
 //   import { doc, setDoc } from "firebase/firestore";
 //   import db from "@firebase/firebase";
 import Link from "next/link";
+import withTransition from "@components/withTransition";
 
 const cards = [
   "/1.png",
@@ -448,4 +449,4 @@ const Preview = ({
   );
 };
 
-export default CardCreator;
+export default withTransition(CardCreator);

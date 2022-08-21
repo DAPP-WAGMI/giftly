@@ -4,6 +4,7 @@ import styles from "../styles/Home.module.css";
 import { HStack, VStack, Image, Text, Button, Box } from "@chakra-ui/react";
 import Link from "next/link";
 import Footer from "@components/Footer";
+import withTransition from "@components/withTransition";
 
 const sampleCardCategories = [
   {
@@ -108,4 +109,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default withTransition(Home);

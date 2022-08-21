@@ -19,6 +19,7 @@ import {
 import Link from "next/link";
 import { abridgeAddress } from "@utils/abridgeAddress";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
+import withTransition from "@components/withTransition";
 
 const data = {
   gifter: "0xD07b84827096306B01a2EF3193026Ed6A6BF8Fb8",
@@ -90,4 +91,4 @@ const CardPage: NextPage = () => {
   );
 };
 
-export default CardPage;
+export default withTransition(CardPage);
