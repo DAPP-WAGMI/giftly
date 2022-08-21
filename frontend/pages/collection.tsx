@@ -18,6 +18,7 @@ import {
 import { abridgeAddress } from "@utils/abridgeAddress";
 import { abridgeMessage } from "@utils/abridgeMessage";
 import { useState } from "react";
+import Link from "next/link";
 
 const receivedCardData = [
   {
@@ -152,7 +153,9 @@ const Collection: NextPage = () => {
                 </VStack>
                 <HStack>
                   <Button className={styles.detailsButton}>View Details</Button>
-                  <Button className={styles.claimButton}>Claim Gift</Button>
+                  <Link href="/card/1">
+                    <Button className={styles.claimButton}>Claim Gift</Button>
+                  </Link>
                 </HStack>
               </HStack>
               {index !== filteredCards.length - 1 && (
