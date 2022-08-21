@@ -132,7 +132,7 @@ const CardPage: NextPage = () => {
           <HStack className={styles.metadataSubtitleContainer}>
             <Text className={styles.metadataSubtitle}>IPFS Metadata</Text>
             <a
-              href="https://bafybeicynj2l3xinctywttkivp44me4dkh7kqi77twtyxipmmgblkoib2a.ipfs.w3s.link/tokenURI.json"
+              href="https://bafybeicx4wvxr4tat2a6yiszedmwfdaw6rwrufjbd5cnl4upsm47l7bpqi.ipfs.w3s.link/tokenURI.json"
               target="_blank"
               rel="noopener noreferrer"
             >
