@@ -14,7 +14,7 @@ All the web app client side code is hosted on [`/frontend`](frontend).
 
 The cron server for the scheduled gift card send is hosted on [`/cron-server`](cron-server).
 
-### Context
+## Context
 
 There's too much extracting, scheming, pumping, and dumping in web3 - and not enough love and gratitude. As a result, we've built Giftly.
 
@@ -26,9 +26,7 @@ Giftly takes a 2% fee from each gift card purchase. 1% of that fee will go to ch
 
 In the long-term, we aim to build a standard for vendors (i.e. NFT marketplaces like Opensea or Zora) to accept our gift cards for users making purchases on their platform and be able to sell their own branded gift cards.
 
-Make someone's day special with Giftly.
-
-### How it's Made
+## How it's Made
 
 - Network: Polygon
 

@@ -1,4 +1,24 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Giftly Service Dapp
+
+## Landing Page
+
+![](public/landing.png)
+
+## Gift Card Creator Page
+
+![](public/creator.png)
+
+## Collection Page
+
+![](public/collection.png)
+
+## Leaderboard Page
+
+![](public/leaderboard.png)
+
+## Rewards Page
+
+![](public/rewards.png)
 
 ## Getting Started
 
