@@ -45,7 +45,7 @@ const CardPage: NextPage = () => {
     addressOrName: "0x8Dec478C52c63552708559340B6Cc4456a454d49",
     contractInterface: GiftlyProtocol.abi,
     functionName: "claim",
-    args: [9],
+    args: [10],
   });
 
   const {
