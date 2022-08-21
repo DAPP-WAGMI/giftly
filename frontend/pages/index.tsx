@@ -10,56 +10,57 @@ const sampleCardCategories = [
   {
     name: "Appreciation",
     cards: [
-      "/appreciation_1.jpg",
-      "/appreciation_2.jpg",
-      "/appreciation_3.jpg",
-      "/appreciation_4.jpg",
-      "/appreciation_5.jpg",
-      "/appreciation_6.jpg",
-      "/appreciation_7.jpg",
+      "/cards/appreciation_1.jpg",
+      "/cards/appreciation_2.jpg",
+      "/cards/appreciation_3.jpg",
+      "/cards/appreciation_4.jpg",
+      "/cards/appreciation_5.jpg",
+      "/cards/appreciation_6.jpg",
+      "/cards/appreciation_7.jpg",
     ],
   },
   {
     name: "Birthday",
     cards: [
-      "/birthday_1.jpg",
-      "/birthday_2.jpg",
-      "/birthday_3.jpg",
-      "/birthday_4.jpg",
-      "/birthday_5.jpg",
+      "/cards/birthday_1.jpg",
+      "/cards/birthday_2.jpg",
+      "/cards/birthday_3.jpg",
+      "/cards/birthday_4.jpg",
+      "/cards/birthday_5.jpg",
     ],
   },
   {
     name: "Love",
     cards: [
-      "/love_1.jpg",
-      "/love_2.jpg",
-      "/love_3.jpg",
-      "/love_4.jpg",
-      "/love_5.jpg",
+      "/cards/love_1.jpg",
+      "/cards/love_2.jpg",
+      "/cards/love_3.jpg",
+      "/cards/love_4.jpg",
+      "/cards/love_5.jpg",
     ],
   },
   {
     name: "Thanks",
     cards: [
-      "/thanks_1.jpg",
-      "/thanks_2.jpg",
-      "/thanks_3.jpg",
-      "/thanks_4.jpg",
-      "/thanks_5.jpg",
-      "/thanks_6.jpg",
+      "/cards/thanks_1.jpg",
+      "/cards/thanks_2.jpg",
+      "/cards/thanks_3.jpg",
+      "/cards/thanks_4.jpg",
+      "/cards/thanks_5.jpg",
+      "/cards/thanks_6.jpg",
     ],
   },
   {
     name: "Featured",
     cards: [
-      "/featured_1.jpg",
-      "/featured_2.jpg",
-      "/featured_3.jpg",
-      "/featured_4.jpg",
-      "/featured_5.jpg",
-      "/featured_6.jpg",
-      "/featured_7.jpg",
+      "/cards/featured_1.jpg",
+      "/cards/featured_2.jpg",
+      "/cards/featured_3.jpg",
+      "/main.png",
+      "/cards/featured_4.jpg",
+      "/cards/featured_5.jpg",
+      "/cards/featured_6.jpg",
+      "/cards/featured_7.jpg",
     ],
   },
 ];
@@ -109,12 +110,14 @@ const Home: NextPage = () => {
             </HStack>
             <HStack className={styles.cardCategoryCarouselContainer}>
               {cards.map((image, index) => (
-                <Image
-                  key={index}
-                  src={`/cards${image}`}
-                  alt="Card"
-                  className={styles.cardCategoryCarouselImage}
-                />
+                <Link key={index} href="/create">
+                  <Image
+                    src={image}
+                    cursor="pointer"
+                    alt="Card"
+                    className={styles.cardCategoryCarouselImage}
+                  />
+                </Link>
               ))}
             </HStack>
           </VStack>

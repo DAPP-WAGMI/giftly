@@ -88,6 +88,7 @@ const CardPage: NextPage = () => {
     </VStack>
   ) : (
     <VStack className={styles.container}>
+      <Confetti width={2000} height={1000} numberOfPieces={200} />
       <VStack className={styles.titleContainer}>
         <Text className={styles.title}>
           You’ve received a special gift from

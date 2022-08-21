@@ -425,7 +425,7 @@ const Preview = ({
         <VStack className={styles.previewTitleContainer}>
           <Text className={styles.previewTitle}>Create Gift Card</Text>
           <Text className={styles.previewSubtitle}>
-            The perfect gift, for every occasion. Edit this.
+            Make someone's day special with a gift card.
           </Text>
         </VStack>
       )}
