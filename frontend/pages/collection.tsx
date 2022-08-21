@@ -327,7 +327,7 @@ const NFTCard = ({
           >{`Gift Amount: ${amount} ${tokenSymbol}`}</Text>
         </VStack>
         <HStack>
-          <Link href="/card/6">
+          <Link href="/card/10">
             <Button className={styles.detailsButton}>View Details</Button>
           </Link>
           {!claimed ? (
