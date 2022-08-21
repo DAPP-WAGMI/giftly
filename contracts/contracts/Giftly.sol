@@ -191,7 +191,6 @@ contract GiftlyProtocol is ERC721, Ownable, ReentrancyGuard {
     // ============ CLAIMING ============
     function claim(uint256 _tokenId)
         external
-        payable
         nonReentrant
         hasBalance(_tokenId)
         isOwner(_tokenId)
@@ -203,7 +202,6 @@ contract GiftlyProtocol is ERC721, Ownable, ReentrancyGuard {
 
     function claimAs(uint256 _tokenId)
         external
-        payable
         nonReentrant
         hasBalance(_tokenId)
         isClaimer(_tokenId)
@@ -215,7 +213,6 @@ contract GiftlyProtocol is ERC721, Ownable, ReentrancyGuard {
 
     function claimPartial(uint256 _tokenId, uint256 _amount)
         external
-        payable
         nonReentrant
         isCorrectClaimAmount(_tokenId, _amount)
     {
@@ -227,7 +224,6 @@ contract GiftlyProtocol is ERC721, Ownable, ReentrancyGuard {
 
     function claimERC20(uint256 _tokenId)
         external
-        payable
         nonReentrant
         hasBalance(_tokenId)
     {
@@ -240,7 +236,6 @@ contract GiftlyProtocol is ERC721, Ownable, ReentrancyGuard {
 
     function claimERC20Partial(uint256 _tokenId, uint256 _amount)
         external
-        payable
         nonReentrant
         isCorrectClaimAmount(_tokenId, _amount)
     {
@@ -285,14 +280,13 @@ contract GiftlyProtocol is ERC721, Ownable, ReentrancyGuard {
     }
 
     // ============ OWNER-ONLY ADMIN FUNCTIONS ============
-    // only if we want to store the token balance in the JSON
-    // function setTokenURI(address _user, string memory _tokenURI)
-    //     external
-    //     onlyOwner
-    // {
-    //     uint256 tokenId = addressToTokenId[_user];
-    //     tokenIdToURI[tokenId] = _tokenURI;
-    // }
+    function setTokenURI(uint256 _tokenId, string memory _tokenURI)
+        external
+        onlyOwner
+    {
+        tokenIdToURI[_tokenId] = _tokenURI;
+    }
+
     function setClaimer(uint256 _tokenId, address _claimer)
         external
         isOwner(_tokenId)

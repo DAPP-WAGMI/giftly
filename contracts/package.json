@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "npx hardhat run scripts/deploy.js"
+    "deploy": "npx hardhat run scripts/deploy.js",
+    "gift": "npx hardhat run scripts/gift.js"
   },
   "keywords": [],
   "author": "",

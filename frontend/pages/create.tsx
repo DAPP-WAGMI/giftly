@@ -19,8 +19,11 @@ import { useCallback, useState } from "react";
 //   import db from "@firebase/firebase";
 import Link from "next/link";
 import withTransition from "@components/withTransition";
-import { NFTStorage } from "nft.storage";
-import CIDs from "@data/cid";
+import CIDs from "@data/cid.json";
+import { Web3Storage } from "web3.storage";
+import GiftlyProtocol from "@data/GiftlyProtocol.json";
+import { usePrepareContractWrite, useContractWrite } from "wagmi";
+import { ethers } from "ethers";
 
 const cards = [
   "/1.png",
@@ -34,6 +37,15 @@ const cards = [
 ];
 
 const NFT_STORAGE_TOKEN = process.env.NEXT_PUBLIC_NFT_STORAGE_API_KEY;
+const WEB3_STORAGE_TOKEN =
+  process.env.NEXT_PUBLIC_WEB3_STORAGE_API_KEY ??
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweERjNTkyMTc3NjlhNjFkMjU1NzliMDlmNzhBQWMyYkNGMTY0NDcxMmQiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NjEwNTcyNzU5NDMsIm5hbWUiOiJnaWZ0bHkifQ.0behxUifkGPImkPNiaZOFw-61QP8NszNvw6UOEd1Eyo";
+
+// Construct with token and endpoint
+const client = new Web3Storage({
+  token: WEB3_STORAGE_TOKEN,
+  endpoint: new URL("https://api.web3.storage"),
+});
 
 const CardCreator: NextPage = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -51,65 +63,37 @@ const CardCreator: NextPage = () => {
   const [showTier, setShowTier] = useState<boolean>(true);
   const [selectedSocial, setSelectedSocial] = useState<string>("");
 
-  console.log("hello: ", process.env.NEXT_PUBLIC_NFT_STORAGE_API_KEY);
+  const [tokenURI, setTokenURI] = useState<string>("");
 
-  const client = new NFTStorage({ token: NFT_STORAGE_TOKEN });
+  function getFilesObject() {
+    const obj = {
+      name: "Giftly Gift Card Collection #1",
+      description: "Giftly: desciprhgipewhgipewj",
+      image:
+        "https://bafkreigmxaglcivuzullazjnwvmtbzo3ioqeqp54azgw2lr66oy6rpvowa.ipfs.nftstorage.link/",
+      image_url:
+        "https://bafkreigmxaglcivuzullazjnwvmtbzo3ioqeqp54azgw2lr66oy6rpvowa.ipfs.nftstorage.link/",
+      message:
+        "Dear Mr. President,\nI would like to express my gratitude for your tireless efforts to make America great again. I appreciate all that you have done to improve the economy and create jobs. I also appreciate your efforts to keep America safe by strengthen our military and improve our security. I am proud to have you as my president and I look forward to seeing more great things from you in the future.\n  Sincerely, [Your name]",
+      date: "2022-08-21T04:27:26.274Z",
+      amount: "200",
+      token: "MATIC",
+      gifter: "0xD07b84827096306B01a2EF3193026Ed6A6BF8Fb8",
+    };
+    const blob = new Blob([JSON.stringify(obj)], { type: "application/json" });
 
-  const saveContract = useCallback(async (address: string) => {
-    // const docRef = doc(db, "contracts", address.toLowerCase());
-    // await setDoc(docRef, {
-    //   address: address.toLowerCase(),
-    //   name: communityName,
-    //   description: communityDescription,
-    //   users: [],
-    //   protocolAddress:
-    //     protocolAddress ?? "0x48adbf604c7ff9e2b2e8c01b243ba446538972ea", // TODO: dynamic
-    //   githubRepoURL: githubURL ?? "https://github.com/iamminci/verbsdao",
-    // });
-  }, []);
+    const files = [new File([blob], "metadata.json")];
+    return files;
+  }
 
-  const { config } = usePrepareContractWrite({
-    addressOrName: nftAddress
-      ? nftAddress
-      : "0x2E20684B8082aaeE594999324E154111d55b58bb",
-    contractInterface: communityNFT.abi,
-    functionName: "mint",
-  });
-
-  const { data: txn, isLoading, isSuccess, write } = useContractWrite(config);
-
-  const uploadData = async () => {
-    // const imageFile = new File([someBinaryImageData], "nft.png", {
-    //   type: "image/png",
-    // });
-    const metadata = await client.store({
-      name: "Community NFT",
-      description: "Just try to funge it. You can't do it.",
-      image: CIDs["1"],
-    });
+  const uploadMetadata = async () => {
+    const files = getFilesObject();
+    const cid = await client.put(files);
+    console.log("stored files with cid:", cid);
+    const uri = `https://${cid}.ipfs.w3s.link/metadata.json`;
+    setTokenURI(uri);
+    return uri;
   };
-
-  const publishNFT = useCallback(async () => {
-    setLoading(true);
-    // try {
-    //   const response = await fetch("http://localhost:3001/deploy", {
-    //     method: "POST",
-    //     body: JSON.stringify({ tokenSupply: 100 }),
-    //     headers: {
-    //       "content-type": "application/json",
-    //       "Access-Control-Allow-Origin": "*",
-    //     },
-    //   });
-    //   const data = await response.json();
-    //   console.log("data: ", data);
-    //   setPublishedContract(data.contractAddress);
-    //   const logoURL = handleLogoFileUpload();
-    //   saveContract(data.contractAddress);
-    // } catch (err) {
-    //   console.log("Error request: ", err);
-    // }
-    setLoading(false);
-  }, []);
 
   const handleFileChange = (event: any) => {
     console.log("loaded file: ", event.target.files[0]);
@@ -118,6 +102,27 @@ const CardCreator: NextPage = () => {
     setUploadedLogoURL(url);
     setUploadedLogoFile(event.target.files[0]);
   };
+
+  const { config } = usePrepareContractWrite({
+    addressOrName: "0x8Dec478C52c63552708559340B6Cc4456a454d49",
+    contractInterface: GiftlyProtocol.abi,
+    functionName: "gift",
+    args: [
+      "0xC33003bcEF8DB78167EC77f6ed3B904f8C814649",
+      tokenURI,
+      ethers.utils.parseEther(".01"),
+    ],
+    overrides: {
+      value: ethers.utils.parseEther(".012"),
+    },
+  });
+
+  const {
+    data: txn,
+    isLoading,
+    isSuccess,
+    write: giftNFT,
+  } = useContractWrite(config);
 
   //   const handleLogoFileUpload = async () => {
   //     const formData = new FormData();
@@ -130,6 +135,36 @@ const CardCreator: NextPage = () => {
   //     console.log("logo file successfully uploaded");
   //     // return uploadedLogoURL;
   //   };
+
+  //   const giftNFT = useCallback(async () => {
+  //     setLoading(true);
+  //     try {
+  //       const tokenURI = await uploadMetadata();
+
+  //       const response = await fetch("http://localhost:3001/gift", {
+  //         method: "POST",
+  //         body: JSON.stringify({
+  //           recipient: "0xC33003bcEF8DB78167EC77f6ed3B904f8C814649",
+  //           tokenURI,
+  //           amount: ethers.utils.parseEther(".01"),
+  //           value: ethers.utils.parseEther(".012"),
+  //         }),
+  //         headers: {
+  //           "content-type": "application/json",
+  //           "Access-Control-Allow-Origin": "*",
+  //         },
+  //       });
+
+  //       const data = await response.json();
+  //       console.log("data: ", data);
+  //       //   setPublishedContract(data.contractAddress);
+  //       //   const logoURL = handleLogoFileUpload();
+  //       //   saveContract(data.contractAddress);
+  //     } catch (err) {
+  //       console.log("Error request: ", err);
+  //     }
+  //     setLoading(false);
+  //   }, []);
 
   const handleNameChange = (event: any) => {
     console.log("name: ", event.target.value);
@@ -181,7 +216,6 @@ const CardCreator: NextPage = () => {
           />
           <Box className={styles.spacer}></Box>
           <Form
-            publishNFT={publishNFT}
             // setSelectedTheme={setSelectedTheme}
             // selectedTheme={selectedTheme}
             // uploadedLogoFile={uploadedLogoFile}
@@ -195,6 +229,8 @@ const CardCreator: NextPage = () => {
             toggleRank={toggleRank}
             // toggleTier={toggleTier}
             isLoading={loading}
+            giftNFT={giftNFT}
+            uploadMetadata={uploadMetadata}
           />
         </>
       ) : (
@@ -222,54 +258,26 @@ const CardCreator: NextPage = () => {
   );
 };
 
-const themes = [
-  {
-    id: "midnight",
-    name: "Midnight Dark",
-    foregroundColor: "#1a1820",
-    backgroundColor: "#100e14",
-    foregroundClassname: "midnightDarkFg",
-    foregroundClassname2: "midnightDarkPreviewFg",
-    backgroundClassname: "midnightDarkBg",
-  },
-  {
-    id: "cream",
-    name: "Solid Cream",
-    foregroundColor: "#ffffff",
-    backgroundColor: "#f8f8f8",
-    foregroundClassname: "solidCreamFg",
-    foregroundClassname2: "solidCreamPreviewFg",
-    backgroundClassname: "solidCreamBg",
-  },
-  {
-    id: "pastel",
-    name: "Pastel Lavender",
-    foregroundColor: "#d4c8f5",
-    backgroundColor: "#ad9dce",
-    foregroundClassname: "pastelLavenderFg",
-    foregroundClassname2: "pastelLavenderPreviewFg",
-    backgroundClassname: "pastelLavenderBg",
-  },
-];
-
 type FormProps = {
-  publishNFT: () => void;
   handleNameChange: (event: any) => void;
   handleDescriptionChange: (event: any) => void;
   handleProtocolChange: (event: any) => void;
   handleGithubURLChange: (event: any) => void;
   handleTokenSupplyChange: (event: any) => void;
   toggleRank: (event: any) => void;
+  uploadMetadata: () => Promise<string>;
+  giftNFT: any;
   isLoading: boolean;
 };
 
 const Form = ({
-  publishNFT,
   handleNameChange,
   handleDescriptionChange,
   handleProtocolChange,
   handleGithubURLChange,
   handleTokenSupplyChange,
+  uploadMetadata,
+  giftNFT,
   toggleRank,
   isLoading,
 }: FormProps) => {
@@ -389,7 +397,10 @@ const Form = ({
           </Text>
         </VStack>
         <VStack>
-          <Button className={styles.sendButton} onClick={publishNFT}>
+          <Button className={styles.saveButton} onClick={uploadMetadata}>
+            {isLoading ? <Spinner color="white" /> : "Save Details"}
+          </Button>
+          <Button className={styles.sendButton} onClick={giftNFT}>
             {isLoading ? <Spinner color="white" /> : "Send Gift"}
           </Button>
         </VStack>
@@ -417,8 +428,6 @@ const Preview = ({
   showRank,
   showTier,
 }: PreviewProps) => {
-  const selected = themes.find((theme) => theme.id === selectedTheme)!;
-
   return (
     <VStack className={styles.previewContainer}>
       <VStack className={styles.previewTitleContainer}>
@@ -479,19 +488,3 @@ const Preview = ({
 };
 
 export default withTransition(CardCreator);
-function usePrepareContractWrite(arg0: {
-  addressOrName: any;
-  contractInterface: any;
-  functionName: string;
-}): { config: any } {
-  throw new Error("Function not implemented.");
-}
-
-function useContractWrite(config: any): {
-  data: any;
-  isLoading: any;
-  isSuccess: any;
-  write: any;
-} {
-  throw new Error("Function not implemented.");
-}
