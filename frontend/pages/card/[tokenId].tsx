@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import styles from "@styles/Card.module.css";

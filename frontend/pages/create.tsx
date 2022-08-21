@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import type { NextPage } from "next";
 import styles from "@styles/Create.module.css";
 import {

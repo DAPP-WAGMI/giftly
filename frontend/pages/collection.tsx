@@ -147,6 +147,7 @@ const sentCardData = [
     amount: "200",
     tokenSymbol: "MATIC",
     cardImage: "/cards/featured_5.png",
+    claimed: true,
   },
   {
     gifter: "0xD07b84827096306B01a2EF3193026Ed6A6BF8Fb8",
@@ -156,6 +157,7 @@ const sentCardData = [
     amount: "200",
     tokenSymbol: "MATIC",
     cardImage: "/cards/featured_6.png",
+    claimed: true,
   },
   {
     gifter: "0xD07b84827096306B01a2EF3193026Ed6A6BF8Fb8",
@@ -165,6 +167,7 @@ const sentCardData = [
     amount: "200",
     tokenSymbol: "MATIC",
     cardImage: "/cards/featured_7.png",
+    claimed: true,
   },
   {
     gifter: "0xD07b84827096306B01a2EF3193026Ed6A6BF8Fb8",
@@ -174,6 +177,7 @@ const sentCardData = [
     amount: "200",
     tokenSymbol: "MATIC",
     cardImage: "/cards/thanks_1.png",
+    claimed: true,
   },
 ];
 
