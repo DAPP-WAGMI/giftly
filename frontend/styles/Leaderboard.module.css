@@ -1,0 +1,353 @@
+.container {
+  padding: 8rem 10rem 3rem 10rem;
+  color: black;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.titleContainer {
+  width: 100%;
+  justify-content: space-between !important;
+  align-items: center;
+}
+
+.title {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 42px;
+  line-height: 60px;
+  display: flex;
+  align-items: center;
+
+  color: #000000;
+}
+
+.textContainer {
+  width: 100%;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+}
+
+.fromText {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 48px;
+  /* identical to box height */
+
+  display: flex;
+  align-items: center;
+
+  color: #000000;
+}
+
+.amountText {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 36px;
+  /* identical to box height */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: rgba(54, 54, 54, 0.8);
+}
+
+.messageText {
+  width: 800px;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 36px;
+  /* identical to box height */
+
+  display: flex;
+  align-items: center;
+
+  color: #848484;
+}
+
+.dateText {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 36px;
+  /* identical to box height */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: rgba(54, 54, 54, 0.8);
+}
+
+.cardImage {
+  width: 771px;
+  height: 489px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.claimButton {
+  width: 187px !important;
+  height: 77px !important;
+  border-radius: 20px !important;
+
+  background: #eb498f !important;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px !important;
+  line-height: 33px;
+  /* identical to box height */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: #ffffff;
+}
+
+.detailsButton {
+  width: 187px !important;
+  height: 77px !important;
+  border-radius: 20px !important;
+  background-color: white !important;
+
+  border: 1px solid rgba(0, 0, 0, 0.4);
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px !important;
+  line-height: 33px;
+  /* identical to box height */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: rgb(33, 33, 33);
+}
+
+.groupButton {
+  width: 187px !important;
+  height: 55px !important;
+  /* border-radius: 20px !important; */
+  background-color: white !important;
+
+  border: 1px solid rgba(0, 0, 0, 0.4);
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 20px !important;
+  display: flex;
+
+  justify-self: center;
+  align-items: center;
+  text-align: center;
+
+  color: rgb(33, 33, 33);
+}
+
+.selectedButton {
+  width: 187px !important;
+  height: 55px !important;
+  background-color: white !important;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 20px !important;
+  display: flex;
+
+  justify-self: center;
+  align-items: center;
+  text-align: center;
+
+  color: rgb(33, 33, 33, 0.8);
+}
+
+.divider {
+  width: 100%;
+  height: 0px;
+
+  border: 0.5px solid rgba(0, 0, 0, 0.2);
+}
+
+.messageContainer {
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+}
+
+.metadataContainer {
+  width: 777px;
+  height: 263px;
+
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+
+  padding: 2rem;
+}
+
+.metadataTitle {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: rgba(107, 107, 107, 0.8);
+}
+
+.metadataSubtitleContainer {
+  width: 100%;
+  justify-content: space-between !important;
+}
+
+.metadataSubtitle {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  color: rgba(54, 54, 54, 0.8);
+}
+/* 
+.container {
+  padding: 0 1rem;
+  padding-top: 6rem;
+  height: 100vh;
+  width: 100%;
+  color: black !important;
+} */
+
+.nftContainer {
+  width: 1500px;
+  height: 90px;
+
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 30px;
+
+  justify-content: space-between;
+  padding: 0 2rem;
+}
+
+.subtitle {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+}
+
+.walletAddress {
+  width: 500px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 30px;
+}
+
+.button {
+  width: 187px;
+  height: 60px;
+
+  border: 1px solid #757575;
+  border-radius: 20px;
+}
+
+.headerSection {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 30px;
+  /* identical to box height */
+
+  color: #000000;
+}
+
+.walletAddressHeader {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 30px;
+  text-align: center;
+  width: 35rem;
+}
+
+.walletAddress {
+  text-align: center;
+  width: 32rem;
+}
+
+.XPscore {
+  text-align: center;
+  width: 10rem;
+}
+
+.scoreSection {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 7rem;
+}
+
+.scoresSection2 {
+  width: 35rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.thirdSection2 {
+  width: 28rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.filterSection {
+  width: 100%;
+  justify-content: center;
+
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 30px;
+  /* identical to box height */
+
+  color: #000000;
+}
+
+.leaderboardSection {
+  gap: 20px;
+}
